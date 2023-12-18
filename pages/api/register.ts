@@ -8,10 +8,10 @@ export default async function Register(req: NextApiRequest, res: NextApiResponse
     if (req.method === 'POST') {
         const { name, age, gender, email, password, confirmPassword } = req.body;
 
-        let participant = await Participant.findOne({email});
+        let checkMail = await Participant.findOne({email});
 
         // Check mail already exist
-        if(participant){
+        if(checkMail){
             return res.status(400).json({ message: 'Mail ID already exist.' });
         }
 
