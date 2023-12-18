@@ -20,7 +20,7 @@ const Register = () => {
     };
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
-        setIsLoading(true);
+        
         
         e.preventDefault();
 
@@ -40,6 +40,7 @@ const Register = () => {
         }
 
         // Make a POST request to the /api/register endpoint with the form data
+        setIsLoading(true);
         const response = await fetch('/api/register', {
             method: 'POST',
             headers: {
