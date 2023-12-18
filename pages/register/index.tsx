@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const Register = () => {
@@ -115,8 +116,14 @@ const Register = () => {
                     className="block w-full mb-4 p-2 border border-gray-300 rounded text-black"
                 />
                 {error && <p className="text-red-500">{error}</p>}
+                <p className="mb-4">
+                    Already have an account?{' '}
+                    <Link href="/login" className="text-blue-600">
+                        Login here.
+                    </Link>
+                </p>
                 <button type="submit" className="block w-full p-2 bg-blue-600 text-white rounded">
-                    {isLoading ? <>Loading...</> : <>Register</>}
+                    {isLoading ? 'Loading...' : 'Register'}
                 </button>
             </form>
         </div>
