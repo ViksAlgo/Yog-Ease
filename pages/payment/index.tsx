@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
 
 const Payment = () => {
@@ -68,13 +69,13 @@ const Payment = () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + data.token,
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 },
             });
             const userDetails = await fetchUserDetails.json();
             console.log(userDetails);
             localStorage.setItem('userDetails', JSON.stringify(userDetails));
-            
+
             router.push('/success');
         } catch (error: any) {
             setError(error.message);
