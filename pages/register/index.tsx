@@ -57,6 +57,7 @@ const Register = () => {
             // Registration was successful
             // You can redirect the user to the login page or to the home page
             // For now, let's just log the success message
+            window.location.href = '/batch';
             console.log(data.message);
         } else {
             // Registration failed
