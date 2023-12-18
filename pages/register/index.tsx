@@ -57,6 +57,18 @@ const Register = () => {
             // Registration was successful
             // You can redirect the user to the login page or to the home page
             // For now, let's just log the success message
+
+            const fetchUserDetails = await fetch('/api/fetch-user', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + data.token,
+                },
+            });
+            const userDetails = await fetchUserDetails.json();
+            console.log(userDetails);
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
             window.location.href = '/batch';
             console.log(data.message);
         } else {
