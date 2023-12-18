@@ -11,7 +11,9 @@ export default async function Register(req: NextApiRequest, res: NextApiResponse
         
 
         // Check mail already exist
+        await connect();
         let checkMail = await Participant.findOne({email});
+        await disconnect();
         
         if(checkMail){
             return res.status(400).json({ message: 'Mail ID already exist.' });
