@@ -64,6 +64,17 @@ const Payment = () => {
             }
 
             // Redirect to success page
+            const fetchUserDetails = await fetch('/api/fetch-user', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + data.token,
+                },
+            });
+            const userDetails = await fetchUserDetails.json();
+            console.log(userDetails);
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            
             router.push('/success');
         } catch (error: any) {
             setError(error.message);
