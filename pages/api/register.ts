@@ -8,6 +8,13 @@ export default async function Register(req: NextApiRequest, res: NextApiResponse
     if (req.method === 'POST') {
         const { name, age, gender, email, password, confirmPassword } = req.body;
 
+        let participant = await Participant.findOne({email});
+
+        // Check mail already exist
+        if(participant){
+            return res.status(400).json({ message: 'Mail ID already exist.' });
+        }
+
         // Validate the age
         if (age < 18 || age > 65) {
             return res.status(400).json({ message: 'Age must be between 18 and 65.' });

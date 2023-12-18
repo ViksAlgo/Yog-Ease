@@ -13,12 +13,15 @@ const Register = () => {
     });
 
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e: { target: { name: any; value: any; }; }) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
+        setIsLoading(true);
+        
         e.preventDefault();
 
         if (Number(form.age) < 18 || Number(form.age) > 65) {
@@ -58,6 +61,7 @@ const Register = () => {
             // Display the error message
             setError(data.message);
         }
+        setIsLoading(false);
     };
 
     return (
@@ -111,7 +115,7 @@ const Register = () => {
                 />
                 {error && <p className="text-red-500">{error}</p>}
                 <button type="submit" className="block w-full p-2 bg-blue-600 text-white rounded">
-                    Register
+                    {isLoading ? <>Loading...</> : <>Register</>}
                 </button>
             </form>
         </div>
